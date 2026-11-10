@@ -61,7 +61,7 @@ while [ $# -gt 0 ]; do
     --dev-tools) DEV_TOOLS=1; shift;;       --finalize) FINALIZE=1; shift;;
     --print-tuning) PRINT_TUNING=1; shift;;
     --fake-cpus) FAKE_CPUS=$2; shift 2;;    --fake-mem-mb) FAKE_MEM_MB=$2; shift 2;;
-    -h|--help) sed -n '2,45p' "$0" 2>/dev/null || echo "see README"; exit 0;;
+    -h|--help) [ -f "$0" ] && head -c 2 "$0" | grep -q '#!' && sed -n '2,45p' "$0" || echo 'Flags: see README.md (https://github.com/loevskiy/vpn-node-setup)'; exit 0;;
     *) die "unknown flag: $1";;
   esac
 done
